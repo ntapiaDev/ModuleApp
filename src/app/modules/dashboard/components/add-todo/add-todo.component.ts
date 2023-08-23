@@ -21,6 +21,10 @@ export class AddTodoComponent {
   });
 
   toggleForm() {
+    this.form.patchValue({
+      name: '',
+      content: ''
+    });
     this.showForm = !this.showForm;
   }
 

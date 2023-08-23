@@ -28,6 +28,7 @@ export class DashboardComponent {
     );  }
 
   toggleModale() {
+    this.name = '';
     this.modaleOpened = !this.modaleOpened;
   }
 
