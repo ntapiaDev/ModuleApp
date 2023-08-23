@@ -7,6 +7,6 @@ export const initialState: Todo[] = [];
 export const todoReducer = createReducer(
   initialState,
   on(addTodo, (state, { todo }) => [...state, todo]),
-  on(deleteTodo, (state, { id }) => state.filter((cat) => cat._id !== id)),
+  on(deleteTodo, (state, { id }) => state.filter((todo) => todo._id !== id)),
   on(getAll, (state, { todos }) => todos)
 );

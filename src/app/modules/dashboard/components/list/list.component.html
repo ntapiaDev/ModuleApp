@@ -1,5 +1,6 @@
 <div class="list">
   <div>{{ list.name }}</div>
+  <button (click)="deleteList(list._id)">X</button>
   <div *ngIf="todos$ | async as todos">
     <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
   </div>
