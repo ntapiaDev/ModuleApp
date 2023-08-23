@@ -1,0 +1,7 @@
+<div class="list">
+  <div>{{ list.name }}</div>
+  <div>ID : {{ list._id }}</div>
+  <div *ngIf="todos$ | async as todos">
+    <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
+  </div>
+</div>

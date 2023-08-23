@@ -1,2 +1,11 @@
-<p>dashboard works!</p>
+<section *ngIf="lists$ | async as lists">
+  <div *ngIf="lists.length > 0; else empty">
+    <app-list *ngFor="let list of lists" [list]="list"></app-list>
+  </div>
+</section>
+
 <router-outlet></router-outlet>
+
+<ng-template #empty>
+  <p>Votre liste est vide pour le moment.</p>
+</ng-template>
