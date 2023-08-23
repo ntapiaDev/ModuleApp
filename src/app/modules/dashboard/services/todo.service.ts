@@ -26,4 +26,9 @@ export class TodoService {
     let api = `${this.uri}/add/`;
     return this.http.post(api, todo, { headers: this.headers });
   }
+
+  delete(id: string) {
+    let api = `${this.uri}/${id}`;
+    return this.http.delete(api, { headers: this.headers });
+  }
 }

@@ -1,7 +1,6 @@
 <div class="todo">
     <h3>{{ todo.name }}</h3>
-    <div>ID : {{ todo._id }}</div>
+    <button (click)="deleteTodo(todo._id)">X</button>
     <div>{{ todo.content }}</div>
-    <div>{{ todo.list }}</div>
-    <div>{{ todo.done ? "Terminé" : "A faire" }}</div>
+    <!-- <div>{{ todo.done ? "Terminé" : "A faire" }}</div> -->
 </div>
