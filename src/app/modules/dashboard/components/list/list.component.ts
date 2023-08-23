@@ -1,8 +1,9 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { List } from '../../models/list.model';
 import { Todo } from '../../models/todo.model';
-import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-list',
@@ -13,13 +14,13 @@ export class ListComponent {
   @Input() list!: List;
   todos$!: Observable<Todo[]>;
 
-  constructor(private todoService: TodoService) {
-    // this.todos$ = todoService.getAll();
-  }
+  constructor(private store: Store<{ todos: Todo[] }>) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('list' in changes) {
-      this.todos$ = this.todoService.getByListId(this.list._id);
+      this.todos$ = this.store.select('todos').pipe(
+        map(todos => todos.filter(todo => todo.list === this.list._id))
+      );
     }
   }
 }

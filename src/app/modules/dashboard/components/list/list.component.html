@@ -4,4 +4,5 @@
   <div *ngIf="todos$ | async as todos">
     <app-todo *ngFor="let todo of todos" [todo]="todo"></app-todo>
   </div>
+  <app-add-todo [id]="list._id"></app-add-todo>
 </div>

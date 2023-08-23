@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +21,9 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     DashboardModule,
     HomeModule,
-    SharedModule
+    SharedModule,
+    EffectsModule.forRoot({}),
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

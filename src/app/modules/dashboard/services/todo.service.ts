@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Todo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,10 @@ export class TodoService {
   getByListId(id: string): Observable<any> {
     let api = `${this.uri}/list/${id}`;
     return this.http.get(api, { headers: this.headers });
+  }
+
+  add(todo: Todo) {
+    let api = `${this.uri}/add/`;
+    return this.http.post(api, todo, { headers: this.headers });
   }
 }

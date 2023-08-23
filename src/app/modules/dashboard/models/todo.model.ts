@@ -2,6 +2,6 @@ export interface Todo {
     _id: string,
     name: string,
     content: string,
-    list: number,
+    list: string,
     done: boolean
 }

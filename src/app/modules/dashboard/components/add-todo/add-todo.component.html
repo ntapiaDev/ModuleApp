@@ -1,0 +1,10 @@
+<button (click)="toggleForm()">{{ showForm ? "Annuler" : "Ajouter une tache" }}</button>
+<form *ngIf="showForm" [formGroup]="form" (submit)="addTodo()">
+    <label>Nom
+        <input type="text" formControlName="name">
+    </label>
+    <label>Contenu
+        <input type="text" formControlName="content">
+    </label>
+    <button>Ajouter</button>
+</form>
