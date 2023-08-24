@@ -20,12 +20,9 @@ export class DashboardComponent {
   constructor(private listStore: Store<{ lists: List[] }>, private todoStore: Store<{ todos: Todo[] }>, private listService: ListService) {}
 
   ngOnInit() {
-    this.lists$.subscribe((lists) =>
-      lists.length === 0 ? this.listStore.dispatch({ type: '[List] Load Lists' }) : null
-    );
-    this.todos$.subscribe((todos) =>
-      todos.length === 0 ? this.todoStore.dispatch({ type: '[Todo] Load Todos' }) : null
-    );  }
+    this.lists$.subscribe(() => this.listStore.dispatch({ type: '[List] Load Lists' }))
+    this.todos$.subscribe(() => this.todoStore.dispatch({ type: '[Todo] Load Todos' }))
+  }
 
   toggleModale() {
     this.name = '';

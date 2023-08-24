@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { AddListComponent } from './components/add-list/add-list.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListComponent } from './components/list/list.component';
@@ -19,7 +18,6 @@ import { todoReducer } from './store/todos/todos.reducer';
   declarations: [
     DashboardComponent,
     ListComponent,
-    AddListComponent,
     TodoComponent,
     AddTodoComponent,
   ],

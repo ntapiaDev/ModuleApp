@@ -1,0 +1,18 @@
+<section>
+  <h1>Inscription :</h1>
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <label>Nom
+        <input type="text" formControlName="name" placeholder="Votre nom" required/>
+    </label>
+    <label>Email
+        <input type="email" formControlName="email" placeholder="Votre email" required/>
+    </label>
+    <label>Mot de passe
+        <input type="password" formControlName="password" placeholder="Votre mot de passe" required/>
+    </label>
+    <label>Vérification
+        <input type="password" formControlName="confirmPassword" placeholder="Confirmez votre mot de passe" required/>
+    </label>
+    <button type="submit">S'enregistrer</button>
+  </form>
+</section>

@@ -1,0 +1,14 @@
+section {
+  padding: 1em;
+  form {
+    width: 400px;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    input {
+      width: 100%;
+    }
+  }
+}

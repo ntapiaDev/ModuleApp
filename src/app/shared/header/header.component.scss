@@ -6,7 +6,15 @@ ul {
     gap: 1em;
 
     a {
-        padding: 1em;
         display: block;
+    }
+    
+    a,
+    div {
+        padding: 1em;
+    }
+    
+    div {
+        cursor: pointer;
     }
 }

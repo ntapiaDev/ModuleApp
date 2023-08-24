@@ -1,12 +1,19 @@
 <header>
-    <nav>
-        <ul>
-            <li>
-                <a routerLink="/">Home</a>
-            </li>
-            <li>
-                <a routerLink="/dashboard">Dashboard</a>
-            </li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/">Home</a>
+      </li>
+      <li>
+        <a routerLink="/dashboard">Dashboard</a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a routerLink="/register">Register</a>
+      </li>
+      <li *ngIf="!isLoggedIn">
+        <a routerLink="/login">Login</a>
+      </li>
+      <div *ngIf="isLoggedIn">Logout</div>
+    </ul>
+  </nav>
 </header>
