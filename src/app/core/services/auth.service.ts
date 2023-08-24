@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '../models/user.model';
@@ -13,11 +13,12 @@ export class AuthService {
   uri: string = 'http://localhost:4000/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private cookieService: CookieService
-  ) {}
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoggedIn());
+  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
+    this.isLoggedInSubject.next(this.checkLoggedIn());
+  }
 
   signUp(user: User) {
     let api = `${this.uri}/register-user`;
@@ -29,6 +30,7 @@ export class AuthService {
       .post<any>(`${this.uri}/signin`, user)
       .subscribe((res: any) => {
         this.cookieService.set('access_token', res.token);
+        this.isLoggedInSubject.next(true);
       });
   }
 
@@ -44,7 +46,7 @@ export class AuthService {
     } else return null;
   }
 
-  get isLoggedIn(): boolean {
+  private checkLoggedIn(): boolean {
     let authToken = this.cookieService.get('access_token');
     if (authToken) {
       const decodedToken: any = jwtDecode(authToken);
@@ -59,7 +61,8 @@ export class AuthService {
   doLogout() {
     let removeToken = this.cookieService.delete('access_token', '/');
     if (removeToken == null) {
-      this.router.navigate(['log-in']);
+      this.isLoggedInSubject.next(false);
+      this.router.navigate(['login']);
     }
   }
 }
