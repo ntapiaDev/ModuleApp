@@ -1,10 +1,11 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { List } from '../../models/list.model';
 import { Todo } from '../../models/todo.model';
 import { ListService } from '../../services/list.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,14 @@ export class ListComponent {
   @Input() list!: List;
   todos$!: Observable<Todo[]>;
 
-  constructor(private listStore: Store<{ lists: List[] }>, private todoStore: Store<{ todos: Todo[] }>, private listService: ListService) {}
+  isLoggedIn: boolean = false;
+  private subscription: Subscription;
+
+  constructor(private listStore: Store<{ lists: List[] }>, private todoStore: Store<{ todos: Todo[] }>, private authService: AuthService, private listService: ListService) {
+    this.subscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      this.isLoggedIn = isLoggedIn;
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('list' in changes) {
@@ -23,6 +31,10 @@ export class ListComponent {
         map(todos => todos.filter(todo => todo.list === this.list._id))
       );
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   deleteList = async (id: string) => {

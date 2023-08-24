@@ -1,6 +1,6 @@
 <div class="todo">
     <h3>{{ todo.name }}</h3>
-    <button (click)="deleteTodo(todo._id)">X</button>
+    <button *ngIf="isLoggedIn" (click)="deleteTodo(todo._id)">X</button>
     <div>{{ todo.content }}</div>
     <!-- <div>{{ todo.done ? "Terminé" : "A faire" }}</div> -->
     <div class="owner">{{ todo.user }}</div>

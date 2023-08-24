@@ -70,7 +70,6 @@ export class AuthService {
     let removeToken = this.cookieService.delete('access_token', '/');
     if (removeToken == null) {
       this.isLoggedInSubject.next(false);
-      this.router.navigate(['login']);
     }
   }
 }

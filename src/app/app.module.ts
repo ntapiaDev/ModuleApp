@@ -19,8 +19,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    DashboardModule,
-    HomeModule,
     SharedModule,
     EffectsModule.forRoot({}),
     StoreModule.forRoot({})

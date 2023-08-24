@@ -2,7 +2,7 @@
   <div *ngIf="lists.length > 0; else empty">
     <app-list *ngFor="let list of lists" [list]="list"></app-list>
   </div>
-  <button (click)="toggleModale()" class="add">Ajouter une liste</button>
+  <button *ngIf="isLoggedIn" (click)="toggleModale()" class="add">Ajouter une liste</button>
   <aside *ngIf="modaleOpened">
     <input type="text" [(ngModel)]="name">
     <button (click)="addList()">Ajouter</button>
