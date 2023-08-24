@@ -8,7 +8,12 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class HeaderComponent {
   isLoggedIn: boolean;
+  
   constructor(private authService: AuthService) {
     this.isLoggedIn = authService.isLoggedIn;
+  }
+
+  logout() {
+    this.authService.doLogout();
   }
 }

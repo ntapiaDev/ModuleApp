@@ -7,28 +7,31 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required])
+    confirmPassword: new FormControl('', [Validators.required]),
   });
 
   constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     const form = this.form.value;
+
     if (!this.form.valid || form.password !== form.confirmPassword) {
       return;
     }
+
     const user: User = {
       name: form.name!,
       email: form.email!,
       password: form.password!
-    }
+    };
+    
     this.authService.signUp(user).subscribe((res: any) => {
       if (res.result) {
         this.form.reset();

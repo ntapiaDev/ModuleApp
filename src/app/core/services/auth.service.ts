@@ -29,10 +29,6 @@ export class AuthService {
       .post<any>(`${this.uri}/signin`, user)
       .subscribe((res: any) => {
         this.cookieService.set('access_token', res.token);
-
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.router.navigate(['user-profile/' + res.data._id]);
-        });
       });
   }
 
@@ -65,10 +61,5 @@ export class AuthService {
     if (removeToken == null) {
       this.router.navigate(['log-in']);
     }
-  }
-
-  getUserProfile(id: string): Observable<any> {
-    let api = `${this.uri}/user-profile/${id}`;
-    return this.http.get(api, { headers: this.headers });
   }
 }

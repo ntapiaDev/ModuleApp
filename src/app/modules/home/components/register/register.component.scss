@@ -1,5 +1,6 @@
 section {
   padding: 1em;
+  
   form {
     width: 400px;
     margin-top: 1em;
@@ -9,6 +10,11 @@ section {
 
     input {
       width: 100%;
+      padding: 0.25em;
+    }
+
+    button {
+      padding: 0.5em;
     }
   }
 }
