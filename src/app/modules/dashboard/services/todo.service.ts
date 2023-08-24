@@ -22,12 +22,12 @@ export class TodoService {
     return this.http.get(api, { headers: this.headers });
   }
 
-  add(todo: Todo) {
+  add(todo: Todo): Observable<any>  {
     let api = `${this.uri}/add/`;
     return this.http.post(api, todo, { headers: this.headers });
   }
 
-  delete(id: string) {
+  delete(id: string): Observable<any>  {
     let api = `${this.uri}/${id}`;
     return this.http.delete(api, { headers: this.headers });
   }

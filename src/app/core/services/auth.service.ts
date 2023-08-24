@@ -46,6 +46,14 @@ export class AuthService {
     } else return null;
   }
 
+  getUsername() {
+    let authToken = this.cookieService.get('access_token');
+    if (authToken) {
+      const decodedToken: any = jwtDecode(authToken);
+      return decodedToken.name;
+    } else return null;
+  }
+
   private checkLoggedIn(): boolean {
     let authToken = this.cookieService.get('access_token');
     if (authToken) {

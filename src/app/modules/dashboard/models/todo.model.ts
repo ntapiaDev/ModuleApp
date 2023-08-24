@@ -3,5 +3,6 @@ export interface Todo {
     name: string,
     content: string,
     list: string,
+    user: string,
     done: boolean
 }
